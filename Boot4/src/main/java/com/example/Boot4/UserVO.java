@@ -39,5 +39,11 @@ public void setEmail(String email) {
 	this.email = email;
 }
 
+public void update(UserVO newUser) {
+	this.userId = newUser.userId;
+	this.name = newUser.name;
+	this.email = newUser.email;
+}
+
 
 }

@@ -1,11 +1,12 @@
 package com.example.Boot4;
 
-import java.util.*;
+import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+
 
 @Controller
 @RequestMapping("/users")
@@ -19,6 +20,26 @@ public class UserController {
 	@Autowired
 	private UservoRepository uservoRepository;
 	
+	@GetMapping("/loginform")
+	public String loginForm(){
+		return "user/login";
+	}
+	
+	@PostMapping("/login")
+	public String login(String userId,String password,HttpSession session){
+		UserVO userVO = uservoRepository.findByUserId(userId);
+		
+		if(userVO == null){
+			return "redirect:/users/loginform";
+		}
+		
+		if(!userVO.getPassword().equals(password)){
+			return "redirect:/users/loginform";
+		}
+		
+		session.setAttribute("userId", userVO);
+		return "redirect:/";
+	}
 	
 	@PostMapping("")
 	public String userJoin(UserVO user){
@@ -26,7 +47,6 @@ public class UserController {
 		return "redirect:/users"; // 밑에 매소드 맵핑 주소로 쓰면 안된다. 현 주소가 /user/create이기 떄문에
 								// /user/list를 쓰게 되면 /user/user/list가 되어 버린다.
 	}
-
 	
 	@GetMapping("")
 	public String userList(Model model){
@@ -39,5 +59,18 @@ public class UserController {
 		return "user/form";
 	}
 	
+	@GetMapping("/{id}/form")
+	public String updateForm(@PathVariable Long id,Model model){
+		model.addAttribute("user",uservoRepository.findOne(id));
+		return "user/updateForm";
+	}
+	
+	@PutMapping("/{id}")
+	public String updateUser(@PathVariable Long id,UserVO newUser){
+		UserVO userVO = uservoRepository.findOne(id);
+		userVO.update(newUser);
+		uservoRepository.save(userVO);
+		return "redirect:/users";
+	}
 	
 }
