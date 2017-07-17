@@ -1,1 +1,2 @@
 INSERT INTO USERVO (USER_ID, EMAIL, NAME, PASSWORD) VALUES ('siaer','siaert@naver.com','강진영','siaer');
+INSERT INTO USERVO (USER_ID, EMAIL, NAME, PASSWORD) VALUES ('siaert','siaer00@naver.com','강진우','siaert');

@@ -9,11 +9,18 @@ public class UserVO {
 @GeneratedValue
 private Long id;
 
-@Column(nullable=false)
+@Column(nullable=false,unique=true)
 private String userId;
 private String password;
 private String name;
 private String email;
+
+
+
+
+public Long getId() {
+	return id;
+}
 public String getUserId() {
 	return userId;
 }
