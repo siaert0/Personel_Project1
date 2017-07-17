@@ -37,7 +37,7 @@ public class UserController {
 			return "redirect:/users/loginform";
 		}
 		
-		session.setAttribute("userId", userVO);
+		session.setAttribute("user", userVO);
 		return "redirect:/";
 	}
 	
@@ -71,6 +71,12 @@ public class UserController {
 		userVO.update(newUser);
 		uservoRepository.save(userVO);
 		return "redirect:/users";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session){
+		session.removeAttribute("user");
+		return "redirect:/";
 	}
 	
 }
