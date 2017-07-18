@@ -46,6 +46,33 @@ public void setEmail(String email) {
 	this.email = email;
 }
 
+
+public boolean matchId(Long id2){
+	if(id2 == null){
+		return false; 
+	}
+	return id2.equals(id);
+}
+
+
+public boolean matchUserId(String inUserId){
+	if(inUserId == null){
+		return false; 
+	}
+	return inUserId.equals(userId);
+}
+
+
+public boolean matchPassword(String inPassword){
+	if(inPassword == null){
+		return false; 
+	}
+	return inPassword.equals(password);
+}
+
+
+
+
 public void update(UserVO newUser) {
 	this.userId = newUser.userId;
 	this.name = newUser.name;

@@ -29,15 +29,16 @@ public class UserController {
 	public String login(String userId, String password, HttpSession session) {
 		UserVO userVO = uservoRepository.findByUserId(userId);
 
-		if (userVO == null) {
+		if (!userVO.matchUserId(userId)) {        // 아이디를 검사하고 true를 리턴받아 반전시킨후 밑에 코드인 비밀번호
+											      // 로직까지 확인해야 하기 때문에 ! 을 쓴다.  
 			return "redirect:/users/loginform";
 		}
 
-		if (!userVO.getPassword().equals(password)) {
+		if (!userVO.matchPassword(password)) {
 			return "redirect:/users/loginform";
 		}
 
-		session.setAttribute("sessionedUser", userVO);
+		session.setAttribute(HttpSessionUtils.USER_SESSION_KEY, userVO);
 		return "redirect:/";
 	}
 
@@ -63,13 +64,13 @@ public class UserController {
 
 	@GetMapping("/{id}/form")
 	public String updateForm(@PathVariable Long id, Model model, HttpSession session) {
-		Object temUser = session.getAttribute("sessionedUser");
-		if (temUser == null) {
+		System.out.println("리스트페이지에서 수정버튼 누름!");
+		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "redirect:/users/loginform";
 		}
 
-		UserVO sessionedUser = (UserVO) temUser;
-
+		UserVO sessionedUser = HttpSessionUtils.getUserFromSession(session);
+ 
 		if (!id.equals(sessionedUser.getId())) {
 			throw new IllegalStateException("Error!!");
 		}
@@ -80,15 +81,13 @@ public class UserController {
 
 	@PutMapping("/{id}")
 	public String updateUser(@PathVariable Long id, UserVO updateUser,HttpSession session) {
-		Object temUser = session.getAttribute("sessionedUser");
-
-		if (temUser == null) {
+		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "redirect:/users/loginform";
 		}
 
-		UserVO sessionedUser = (UserVO) temUser;
+		UserVO sessionedUser = HttpSessionUtils.getUserFromSession(session);
 
-		if (!id.equals(sessionedUser.getId())) {
+		if (!sessionedUser.matchId(id)) {
 			throw new IllegalStateException("Error!!");
 		}
 		UserVO userVO = uservoRepository.findOne(id);
