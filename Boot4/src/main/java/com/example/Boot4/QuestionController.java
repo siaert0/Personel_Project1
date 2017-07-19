@@ -29,7 +29,7 @@ public class QuestionController {
 		}
 		
 		UserVO user = HttpSessionUtils.getUserFromSession(session);
-		QuestionVO qVO = new QuestionVO(user.getUserId(),title,contents);
+		QuestionVO qVO = new QuestionVO(user,title,contents);  // UserVO가 들어가는 이유는 
 		qRepository.save(qVO);
 		return "redirect:/";
 	}

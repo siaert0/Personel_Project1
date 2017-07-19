@@ -1,5 +1,8 @@
 package com.example.Boot4;
 
+import java.time.*;
+import java.time.format.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,22 +12,12 @@ public class QuestionVO {
 @GeneratedValue
 private Long id;
 
-
-@Column(nullable=false,unique=true)
+@ManyToOne
+@JoinColumn(foreignKey= @ForeignKey(name="fk_questionVO_writer"))
+private UserVO writer;
 private String title;
 private String contents;
-
-@Column
-private String writer;
-
-
-public String getWriter() {
-	return writer;
-}
-public void setWriter(String writer) {
-	this.writer = writer;
-}
-
+private LocalDateTime time;
 
 
 @Override
@@ -34,11 +27,19 @@ public String toString() {
 
 public QuestionVO(){};
 
-public QuestionVO(String writer, String title, String contents) {
+public QuestionVO(UserVO writer, String title, String contents) {
 	super();
 	this.writer = writer;
 	this.title = title;
 	this.contents = contents;
+	this.time = LocalDateTime.now();
+}
+
+public String getFormatTime(){
+	if(time == null){
+		return "";
+	}
+	return time.format(DateTimeFormatter.ofPattern("yy.MM.dd HH:mm:ss"));
 }
 
 

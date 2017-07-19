@@ -20,8 +20,9 @@
                           </strong>
                           <div class="auth-info">
                               <i class="icon-add-comment"></i>
-                              <span class="time">2016-01-15 18:47</span>
-                              <a href="./user/profile.html" class="author">{{writer}}</a>
+                              <span class="time">{{formatTime}}</span><!-- get메소드를 가져오는데 get부분을 뺴고
+                              											   첫글자를 소문자로 바꾸어 넣는다. -->
+                              <a href="./user/profile.html" class="author">{{writer.userId}}</a>
                           </div>
                           <div class="reply" title="댓글">
                               <i class="icon-reply"></i>
