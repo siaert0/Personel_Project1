@@ -71,8 +71,6 @@ public boolean matchPassword(String inPassword){
 }
 
 
-
-
 public void update(UserVO newUser) {
 	this.userId = newUser.userId;
 	this.name = newUser.name;

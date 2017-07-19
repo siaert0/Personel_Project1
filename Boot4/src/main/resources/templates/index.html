@@ -11,16 +11,17 @@
    <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
       <div class="panel panel-default qna-list">
           <ul class="list">
+                      {{#qList}}
               <li>
                   <div class="wrap">
                       <div class="main">
                           <strong class="subject">
-                              <a href="./qna/show.html">프로그래밍 공부를 하자!</a>
+                              <a href="./qna/show.html">{{title}}</a>
                           </strong>
                           <div class="auth-info">
                               <i class="icon-add-comment"></i>
                               <span class="time">2016-01-15 18:47</span>
-                              <a href="./user/profile.html" class="author">강진영</a>
+                              <a href="./user/profile.html" class="author">{{writer}}</a>
                           </div>
                           <div class="reply" title="댓글">
                               <i class="icon-reply"></i>
@@ -29,7 +30,8 @@
                       </div>
                   </div>
               </li>
-              <li>
+                     {{/qList}}
+              <!-- <li>
                   <div class="wrap">
                       <div class="main">
                           <strong class="subject">
@@ -46,7 +48,7 @@
                           </div>
                       </div>
                   </div>
-              </li>
+              </li> -->
           </ul>
           <div class="row">
               <div class="col-md-3"></div>
@@ -62,7 +64,7 @@
                 </ul>
               </div>
               <div class="col-md-3 qna-write">
-                  <a href="./qna/form.html" class="btn btn-primary pull-right" role="button">질문하기</a>
+                  <a href="/question/form" class="btn btn-primary pull-right" role="button">질문하기</a>
               </div>
           </div>
         </div>
