@@ -34,4 +34,31 @@ public class QuestionController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/{id}")
+	public String show(@PathVariable Long id,Model model){
+		model.addAttribute("show", qRepository.findOne(id));
+		return "/qna/show";
+	}
+	
+	@GetMapping("/{id}/form")
+	public String updateForm(@PathVariable Long id,Model model){
+		model.addAttribute("update", qRepository.findOne(id));
+		return "/qna/updateform";	
+	}
+	
+	@PutMapping("/{id}")
+	public String update(@PathVariable Long id,String title, String contents){
+		QuestionVO qVO = qRepository.findOne(id);
+		qVO.update(title,contents); // id를 통해 테이블에서 찾아온 객체의 값을 this.title 과 this.contents를 통해 바꿔준다.
+		qRepository.save(qVO); 
+		return String.format("redirect:/question/%d", id);
+	}
+	
+	@DeleteMapping("/{id}")
+	public String dalete(@PathVariable Long id){
+		qRepository.delete(id);
+		return "redirect:/";
+	}
+	
+	
 }
