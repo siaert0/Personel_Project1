@@ -20,7 +20,7 @@ public class QuestionController {
 			return "user/login";
 		}
 		return "/qna/form";
-	}
+	} 
 	
 	@PostMapping("")
 	public String create(String title,String contents,Model model,HttpSession session){

@@ -2,6 +2,7 @@ package com.example.Boot4;
 
 import java.time.*;
 import java.time.format.*;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -18,6 +19,11 @@ private UserVO writer;
 private String title;
 private String contents;
 private LocalDateTime createTime;
+
+@OneToMany(mappedBy="question")    //한개의 질문은 다수개의 댓글을 가지고 있을 수 있다!!, mappedBy의 값은  answervo의 필드값
+@OrderBy("id ASC")
+private List<AnswerVO> answers;
+
 
 
 @Override
