@@ -2,17 +2,24 @@ package com.example.Boot4;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.*;
+
 @Entity
 public class UserVO {
 
 @Id
 @GeneratedValue
+@JsonProperty // JSON으로 값을 내려보내기 위해 getter 메소드를 추가해 줘야 하지만 이렇게 애노테이션으로도 추가가능
 private Long id;
 
 @Column(nullable=false,unique=true)
+@JsonProperty
 private String userId;
+@JsonIgnore // 패스워드 보안상의 문제도 JSON에서 IGNORE 처리 시킨다.
 private String password;
+@JsonProperty
 private String name;
+@JsonProperty
 private String email;
 
 

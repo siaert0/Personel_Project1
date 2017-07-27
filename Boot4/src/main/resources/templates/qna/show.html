@@ -86,11 +86,12 @@
                           </article>
                           {{/answers}}
                           
-                          <form class="submit-write" method="post" action="/question/{{id}}/answers">
+                          <form class="submit-write" method="post" action="/api/question/{{id}}/answers">
                               <div class="form-group" style="padding:14px;">
                                   <textarea class="form-control" placeholder="Update your status" name="contents"></textarea>
                               </div>
-                              <button class="btn btn-success pull-right" type="submit">답변하기</button>
+                             <input class="btn btn-success pull-right" type="submit" value="답변하기"/>
+                             <!-- button으로 쓰지 말자.. script.js에서 button으로 함수가 동작을 안한다. -->
                               <div class="clearfix" />
                           </form>
                       </div>
@@ -102,6 +103,8 @@
     </div>
 </div>
 
+
+<!-- 이부분을 자바 스크립트로 불러야 한다.(ID값을 이용) -->
 <script type="text/template" id="answerTemplate">
 	<article class="article">
 		<div class="article-header">
@@ -122,7 +125,7 @@
 				<a class="link-modify-article" href="/api/qna/updateAnswer/{3}">수정</a>
 			</li>
 			<li>
-				<form class="delete-answer-form" action="/api/questions/{3}/answers/{4}" method="POST">
+				<form class="delete-answer-form" action="/api/question/{3}/answers/{4}" method="POST">
 					<input type="hidden" name="_method" value="DELETE">
                      <button type="submit" class="delete-answer-button">삭제</button>
 				</form>
@@ -130,11 +133,9 @@
 		</ul>
 		</div>
 	</article>
-</script>
+</script> 
 
 <!-- script references -->
-<script src="../js/jquery-2.2.0.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/scripts.js"></script>
+{{> /include/footer}}
 	</body>
 </html>

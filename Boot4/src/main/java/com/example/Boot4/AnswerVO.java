@@ -5,6 +5,8 @@ import java.time.format.*;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.*;
+
 @Entity
 public class AnswerVO {
 
@@ -14,21 +16,24 @@ public class AnswerVO {
 
 	@Id
 	@GeneratedValue
+	@JsonProperty
 	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="fk_answer_writer"))
+	@JsonProperty
 	private UserVO writer;
 	
 	@ManyToOne
 	@JoinColumn(foreignKey = @ForeignKey(name="fk_answer_to_question"))
+	@JsonProperty
 	private QuestionVO question;
 	
-	
 	@Lob
+	@JsonProperty
 	private String contents;
 	
-	private LocalDateTime createDate;
+	private LocalDateTime createDate;  // JsonProperty를 추가하지 않는건 밑에 getFormatTime을 쓰기 때문에!
 	
 	public AnswerVO(UserVO writer, String contents, QuestionVO question) {
 		super();

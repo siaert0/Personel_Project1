@@ -6,22 +6,31 @@ import java.util.*;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.*;
+
 @Entity
 public class QuestionVO {
 
 @Id
 @GeneratedValue
+@JsonProperty
 private Long id;
 
 @ManyToOne
 @JoinColumn(foreignKey= @ForeignKey(name="fk_questionVO_writer"))
-private UserVO writer;
+@JsonProperty
+private UserVO writer; 
+
+@JsonProperty
 private String title;
+
+@JsonProperty
 private String contents;
+
 private LocalDateTime createTime;
 
 @OneToMany(mappedBy="question")    //한개의 질문은 다수개의 댓글을 가지고 있을 수 있다!!, mappedBy의 값은  answervo의 필드값
-@OrderBy("id ASC")
+@OrderBy("id DESC")
 private List<AnswerVO> answers;
 
 
