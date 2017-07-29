@@ -1,4 +1,4 @@
-package com.example.Boot4;
+package com.project.domain;
 
 import org.springframework.data.jpa.repository.*;
 

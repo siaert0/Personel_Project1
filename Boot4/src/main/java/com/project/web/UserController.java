@@ -1,4 +1,4 @@
-package com.example.Boot4;
+package com.project.web;
 
 import javax.servlet.http.*;
 
@@ -7,6 +7,8 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.filter.*;
+
+import com.project.domain.*;
 
 @Controller
 @RequestMapping("/users")
