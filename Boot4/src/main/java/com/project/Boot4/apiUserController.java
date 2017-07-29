@@ -3,7 +3,7 @@ package com.project.Boot4;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController  // Rest
 @RequestMapping("/api/users")
 public class apiUserController {
 	
