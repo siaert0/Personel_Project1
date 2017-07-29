@@ -1,10 +1,12 @@
-package com.project.Boot4;
+package com.project.web;
 
 import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+
+import com.project.domain.*;
 
 
 @RestController  

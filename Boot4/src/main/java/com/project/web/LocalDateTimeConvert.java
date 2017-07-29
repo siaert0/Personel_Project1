@@ -1,4 +1,4 @@
-package com.project.Boot4;
+package com.project.web;
 
 import java.sql.*;
 import java.time.*;

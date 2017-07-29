@@ -1,7 +1,9 @@
-package com.project.Boot4;
+package com.project.web;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
+
+import com.project.domain.*;
 
 @RestController
 @RequestMapping("/api/users")

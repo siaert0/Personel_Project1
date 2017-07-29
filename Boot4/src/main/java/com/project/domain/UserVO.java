@@ -1,4 +1,4 @@
-package com.project.Boot4;
+package com.project.domain;
 
 import javax.persistence.*;
 

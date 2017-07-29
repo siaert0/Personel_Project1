@@ -1,4 +1,4 @@
-package com.project.Boot4;
+package com.project.domain;
 
 import java.time.*;
 import java.time.format.*;
