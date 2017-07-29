@@ -34,10 +34,39 @@ function onError() {
 function onSuccess(data, status) { 
 	console.log(data);
 	var answerTemplate = $("#answerTemplate").html();
-	var Template = answerTemplate.format(data.writer.userId, data.formatTime, data.contents,data.id, data.id); 
+	var qId = data.question.id;
+ 	var Template = answerTemplate.format(data.writer.userId, data.formatTime, data.contents,data.question.id,data.id); 
 	$(".qna-comment-slipp-articles").prepend(Template);
 	
 	$("textarea[name=contents]").val("");  // 답변을 달고 답변의 input값을 지워줌
+}
+
+$("li .link-delete-article").click(deleteAnswer);
+
+function deleteAnswer(e) {
+	e.preventDefault();
+	
+	var daleteBtn = $(this);      // 이렇게 this를 전역변수로 선언해야 각각의 안에서 쓸 수 있다. 
+	var url = daleteBtn.attr("href");
+	console.log("url : "+ url);
+	
+	$.ajax({
+		type : 'delete',       
+		url : url,
+		dataType : 'json',
+		error : function(xhr, status) {
+			console.log("error");
+		},
+		success : function(data, status) {
+			console.log("success");
+			if(data){
+				daleteBtn.closest("article").remove();
+			}
+			else{
+				alert("자신의 글만 수정,삭제 하실 수 있습니다!");
+			}
+		}
+	});
 }
 
 String.prototype.format = function() {
@@ -49,3 +78,6 @@ String.prototype.format = function() {
 		;
 	});
 };
+
+
+

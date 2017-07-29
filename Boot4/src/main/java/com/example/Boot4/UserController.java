@@ -28,13 +28,14 @@ public class UserController {
 	@PostMapping("/login")
 	public String login(String userId, String password, HttpSession session) {
 		UserVO userVO = uservoRepository.findByUserId(userId);
-
-		if (!userVO.matchUserId(userId)) {        // 아이디를 검사하고 true를 리턴받아 반전시킨후 밑에 코드인 비밀번호
-											      // 로직까지 확인해야 하기 때문에 ! 을 쓴다.  
+		if(userVO == null){ // null 안하면 안된다. null체크 생각 하자!
 			return "redirect:/users/loginform";
 		}
-
-		if (!userVO.matchPassword(password)) {
+		
+		// 아이디를 검사하고 true를 리턴받아 반전시킨후 밑에 코드인 비밀번호
+		// 로직까지 확인해야 하기 때문에 ! 을 쓴다.  
+		if(!userVO.matchUserLogin(userId, password)){
+			System.out.println("진입");
 			return "redirect:/users/loginform";
 		}
 
@@ -64,7 +65,6 @@ public class UserController {
 
 	@GetMapping("/{id}/form")
 	public String updateForm(@PathVariable Long id, Model model, HttpSession session) {
-		System.out.println("리스트페이지에서 수정버튼 누름!");
 		if (!HttpSessionUtils.isLoginUser(session)) {
 			return "redirect:/users/loginform";
 		}

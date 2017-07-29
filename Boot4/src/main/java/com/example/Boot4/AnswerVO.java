@@ -80,5 +80,9 @@ public class AnswerVO {
 		return "Answer [id=" + id + ", writer=" + writer + ", contents=" + contents + ", createDate=" + createDate
 				+ "]";
 	}
+
+	public boolean isSameUser(UserVO loginUser) {
+		return this.writer.equals(loginUser);
+	}
 	
 }

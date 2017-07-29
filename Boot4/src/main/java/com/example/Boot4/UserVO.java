@@ -62,19 +62,8 @@ public boolean matchId(Long id2){
 }
 
 
-public boolean matchUserId(String inUserId){
-	if(inUserId == null){
-		return false; 
-	}
-	return inUserId.equals(userId);
-}
-
-
-public boolean matchPassword(String inPassword){
-	if(inPassword == null){
-		return false; 
-	}
-	return inPassword.equals(password);
+public boolean matchUserLogin(String inUserId,String isUserPassword){
+	return inUserId.equals(userId) && isUserPassword.equals(password); 
 }
 
 

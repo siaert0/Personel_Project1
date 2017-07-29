@@ -3,7 +3,7 @@ package com.example.Boot4;
 import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
+import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -42,10 +42,32 @@ public class AnswerController {
 		QuestionVO qVO = questionRepository.findOne(qId);
 		UserVO loginUser = HttpSessionUtils.getUserFromSession(session);
 		AnswerVO answerVO = new AnswerVO(loginUser, contents, qVO);
-		
+ 		qVO.addAnswer();
 		return answerRepository.save(answerVO);
 		
 	}
+	
+	
+	@DeleteMapping("/{id}")
+	public boolean delete(@PathVariable Long qId,@PathVariable Long id,HttpSession session,Model model){
+		if(!HttpSessionUtils.isLoginUser(session)){
+			return false;
+		}
+		AnswerVO answerVO = answerRepository.findOne(id);
+		UserVO loginUser = HttpSessionUtils.getUserFromSession(session);
+		
+		if(!answerVO.isSameUser(loginUser)){
+			return false;
+		}
+		answerRepository.delete(id); // 리플의 id로 삭제하고
+		QuestionVO qVO = questionRepository.findOne(qId); 
+		qVO.deleteAnswer();
+		questionRepository.save(qVO); // 계산한 리플수를 다시 저장
+		return true;
+	}
+	
+	
+	
 
 	
 }

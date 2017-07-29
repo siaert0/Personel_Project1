@@ -5,6 +5,7 @@ import java.time.format.*;
 import java.util.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.*;
 
@@ -26,6 +27,9 @@ private String title;
 
 @JsonProperty
 private String contents;
+
+@JsonProperty
+private Integer countOfAnswer = 0;
 
 private LocalDateTime createTime;
 
@@ -65,8 +69,17 @@ public void update(String title, String contents) {
 public boolean isSameUser(UserVO loginUser) {
 	return this.writer.equals(loginUser); // 이렇게만 하면 무조건 false가 떨어진다. 이유는 
 										  // equals가 갖는 특징떄문이다. 
-										      
 }
+
+
+public void addAnswer() {
+	this.countOfAnswer += 1;
+}
+
+public void deleteAnswer() {
+	this.countOfAnswer -= 1;
+}
+
 
 @Override
 public int hashCode() {
