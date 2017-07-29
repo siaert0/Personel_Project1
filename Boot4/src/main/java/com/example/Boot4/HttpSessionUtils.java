@@ -1,8 +1,6 @@
-package com.project.web;
+package com.example.Boot4;
 
 import javax.servlet.http.*;
-
-import com.project.domain.*;
 
 public class HttpSessionUtils {
 	public static final String USER_SESSION_KEY = "sessionedUser"; // 상수타입 잊지 말자.
