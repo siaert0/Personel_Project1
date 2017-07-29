@@ -1,4 +1,4 @@
-package com.example.Boot4;
+package com.project.Boot4;
 
 import java.sql.*;
 import java.time.*;

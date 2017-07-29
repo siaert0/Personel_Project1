@@ -1,4 +1,4 @@
-package com.example.Boot4;
+package com.project.Boot4;
 
 import javax.servlet.http.*;
 
@@ -45,7 +45,8 @@ public class QuestionController {
 		try{
 			QuestionVO qVO = qRepository.findOne(id);
 			hasPermission(session, qVO);
-			model.addAttribute("qVO",qVO); 
+			model.addAttribute("update",qVO); 
+			System.out.println("질문글 수정 메소드 돌아감!!");
 			return "qna/updateform";
 		}catch(IllegalStateException e){
 			model.addAttribute("errorMessage", e.getMessage());

@@ -1,4 +1,4 @@
-package com.example.Boot4;
+package com.project.Boot4;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
