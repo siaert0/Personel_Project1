@@ -13,8 +13,13 @@ public class HomeController {
 	@Autowired
 	private QuestionRepository qRepository;
 	
-	@GetMapping("")
-	public String index(Model model){
+	@GetMapping("/")
+	public String index(){
+		return "redirect:list";
+	}
+	
+	@GetMapping("/list")
+	public String Listindex(Model model){
 		model.addAttribute("qList", qRepository.findAll());
 		return "index";
 	}
