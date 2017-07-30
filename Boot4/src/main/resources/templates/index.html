@@ -11,7 +11,7 @@
    <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
       <div class="panel panel-default qna-list">
           <ul class="list">
-                      {{#qList}}
+                      {{#qList.content}}
               <li>
                   <div class="wrap">
                       <div class="main">
@@ -31,18 +31,18 @@
                       </div>
                   </div>
               </li>
-                     {{/qList}}
+                     {{/qList.content}}
           </ul>
           <div class="row">
               <div class="col-md-3"></div>
               <div class="col-md-6 text-center">
                   <ul class="pagination center-block" style="display:inline-block;">
                       <li><a href="#">«</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
+                      <li><a href="/list?size=3&page=0&sort=id,asc">1</a></li>
+                      <li><a href="/list?size=3&page=1&sort=id,asc">2</a></li>
+                      <li><a href="/list?size=3&page=2&sort=id,asc">3</a></li>
+                      <li><a href="/list?size=3&page=3&sort=id,asc">4</a></li>
+                      <li><a href="/list?size=3&page=4&sort=id,asc">5</a></li>
                       <li><a href="#">»</a></li>
                 </ul>
               </div>
