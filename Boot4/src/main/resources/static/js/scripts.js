@@ -25,9 +25,9 @@ function onError() {
 
 //data: json으로 넘어온 AnswerVO status : 상태
 // console.log(data)로 확인하면 getter 메소드를 쓴 필드값만 json으로 받게된다. 그러므로 answerVO에서 getter 메소드를
-// 추가 하던가 해줘야 한다. 여기까지가 6-1
+// 추가 하던가 해줘야 한다. 
 
-// 여기서부터 6-2 
+
 // getter메소드를 추가해 줘야 하지만 @JsonProperty 애노테이션을 통해 같은 효과를 줄 수 있다. 
 // 여기서 answerTemplate.format()이 가르키는건 바로 밑에 있는 String.prototype.format이다!(show.html에 있는 id=answerTemplate)
 // 파라미터의 순서대로 answerTemplate의 {0},{1}... 인자로 값이 들어간다.
