@@ -12,3 +12,5 @@
 #### 설명
 * Spring Boot와 JPA를 이용한 게시판
 
+#### 배포
+* Docker,Jenkins + Slack 
