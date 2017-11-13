@@ -14,7 +14,7 @@ public class HttpSessionUtils {
 	}
 	
 	public static UserVO getUserFromSession(HttpSession session){
-		if(!isLoginUser (session)){
+		if(!isLoginUser(session)){
 			return null;
 		}
 		return (UserVO)session.getAttribute(USER_SESSION_KEY);

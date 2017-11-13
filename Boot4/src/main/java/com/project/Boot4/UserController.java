@@ -79,6 +79,8 @@ public class UserController {
 		return "user/updateForm";
 	}
 
+	
+	
 	@PutMapping("/{id}")
 	public String updateUser(@PathVariable Long id, UserVO updateUser,HttpSession session) {
 		if (!HttpSessionUtils.isLoginUser(session)) {
@@ -96,6 +98,8 @@ public class UserController {
 		return "redirect:/users";
 	}
 
+	
+	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("sessionedUser");

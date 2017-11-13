@@ -44,7 +44,6 @@ public class AnswerController {
 		AnswerVO answerVO = new AnswerVO(loginUser, contents, qVO);
  		qVO.addAnswer();
 		return answerRepository.save(answerVO);
-		
 	}
 	
 	
@@ -65,9 +64,4 @@ public class AnswerController {
 		questionRepository.save(qVO); // 계산한 리플수를 다시 저장
 		return true;
 	}
-	
-	
-	
-
-	
 }

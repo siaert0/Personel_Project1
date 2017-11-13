@@ -59,7 +59,7 @@ public class QuestionController {
 			QuestionVO qVO = qRepository.findOne(id);
 			hasPermission(session, qVO);
 			qVO.update(title, contents); // id를 통해 테이블에서 찾아온 객체의 값을 this.title 과
-											// this.contents를 통해 바꿔준다.
+									     // this.contents를 통해 바꿔준다.
 			qRepository.save(qVO);
 			return String.format("redirect:/question/%d", id);
 		} catch (IllegalStateException e) {

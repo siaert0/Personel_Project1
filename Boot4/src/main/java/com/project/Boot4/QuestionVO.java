@@ -54,7 +54,7 @@ public void update(String title, String contents) {
 
 public boolean isSameUser(UserVO loginUser) {
 	return this.writer.equals(loginUser); // 이렇게만 하면 무조건 false가 떨어진다. 이유는 
-										  // equals가 갖는 특징떄문이다. 
+										  // equals가 갖는 특징 떄문이다. 
 }
 
 

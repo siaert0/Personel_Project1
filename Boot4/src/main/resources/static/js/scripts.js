@@ -4,11 +4,8 @@ $(".submit-write input[type=submit]").click(addAnswer);
 function addAnswer(e) {
 	e.preventDefault(); // 동작이 멈춘다.
 	console.log("Click Me!!!");
-	
 	var queryString = $(".submit-write").serialize();
-	
 	var url = $(".submit-write").attr("action");
-	
 	$.ajax({
 		type : 'post',
 		url : url,
